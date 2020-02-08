@@ -68,9 +68,12 @@ for num in range(1,17787):
         print(pupHis)
         pPubhistory.append(pupHis)
 
-        Keywords =  _soup.find('span', attrs={'itemprop':'keywords'}).getText()
-        print(Keywords)
-        pKeywords.append(Keywords)    
+        key = _soup.find('span', attrs={'itemprop':'keywords'})
+        if key is None :            
+            print(_soup.getText())
+            pKeywords.append(_soup.getText()) 
+        else:
+            pKeywords.append(""); 
 
 df = pd.DataFrame({'Title':pName,'Authors':pAuth,'Affiliations':pAffiliations,'DOI and Date':pDOIandDare,'Cite By' :pCiteBby,'Link:': pLink,'Pub History': pPubhistory,'Keywords': pKeywords}) 
 df.to_csv('data.csv', index=False, encoding='utf-8')
