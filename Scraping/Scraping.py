@@ -70,10 +70,10 @@ for num in range(1,17787):
 
         key = _soup.find('span', attrs={'itemprop':'keywords'})
         if key is None :            
+            pKeywords.append(""); 
+        else:            
             print(_soup.getText())
             pKeywords.append(_soup.getText()) 
-        else:
-            pKeywords.append(""); 
 
 df = pd.DataFrame({'Title':pName,'Authors':pAuth,'Affiliations':pAffiliations,'DOI and Date':pDOIandDare,'Cite By' :pCiteBby,'Link:': pLink,'Pub History': pPubhistory,'Keywords': pKeywords}) 
 df.to_csv('data.csv', index=False, encoding='utf-8')
